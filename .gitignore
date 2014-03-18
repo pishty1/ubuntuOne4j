@@ -2,3 +2,4 @@ target
 *.iml
 *.ipr
 *.iws
+/src/test/resources/test.properties

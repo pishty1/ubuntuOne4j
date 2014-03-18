@@ -16,7 +16,7 @@ public class JsonAuthorizedAPIClient extends AuthorizedAPIClient {
 
 	private static final String CONTENT_LENGTH = "Content-Length";
 
-	public JsonAuthorizedAPIClient(String proxyName, int proxyPort, String proxyUsername, String proxyPassword,
+	protected JsonAuthorizedAPIClient(String proxyName, int proxyPort, String proxyUsername, String proxyPassword,
 								   SSOCredentials credentials) {
 		super(proxyName, proxyPort, proxyUsername, proxyPassword, credentials);
 	}
