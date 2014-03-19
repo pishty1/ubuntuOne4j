@@ -1,6 +1,7 @@
 package au.id.villar.ubuntuOne.account;
 
 //import au.id.villar.ubuntuOne.ssoV1.SSOProxy;
+import au.id.villar.ubuntuOne.ProxyData;
 import au.id.villar.ubuntuOne.SSOCredentials;
 import au.id.villar.ubuntuOne.TestUtils;
 import au.id.villar.ubuntuOne.UbuntuException;
@@ -40,9 +41,14 @@ public class AccountProxyTest {
 		String ubuntuUser = props.getProperty(TestUtils.TOKEN_USER_PROP);
 		String ubuntuPassword = props.getProperty(TestUtils.TOKEN_PASS_PROP);
 
-		au.id.villar.ubuntuOne.ssoV1.SSOAPIClient proxy = new au.id.villar.ubuntuOne.ssoV1.SSOAPIClient(
-				proxyHost, proxyPort, proxyUser, proxyPassword);
-		//SSOProxy proxy = new SSOProxy();
+		au.id.villar.ubuntuOne.ssoV1.SSOAPIClient proxy;
+
+		if(proxyHost != null) {
+			ProxyData proxyData = new ProxyData(proxyHost, proxyPort, proxyUser, proxyPassword);
+			proxy = new au.id.villar.ubuntuOne.ssoV1.SSOAPIClient(proxyData);
+		} else {
+			proxy = new au.id.villar.ubuntuOne.ssoV1.SSOAPIClient();
+		}
 
 		proxy.login(ubuntuUser, ubuntuPassword, "localhost", null);
 
@@ -65,9 +71,13 @@ public class AccountProxyTest {
 		String ubuntuUser = props.getProperty(TestUtils.TOKEN_USER_PROP);
 		String ubuntuPassword = props.getProperty(TestUtils.TOKEN_PASS_PROP);
 
-		SSOAPIClient proxy =
-				new SSOAPIClient(proxyHost, proxyPort, proxyUser, proxyPassword);
-		//SSOProxy proxy = new SSOProxy();
+		SSOAPIClient proxy;
+		if(proxyHost != null) {
+			ProxyData proxyData = new ProxyData(proxyHost, proxyPort, proxyUser, proxyPassword);
+			proxy = new SSOAPIClient(proxyData);
+		} else {
+			proxy = new SSOAPIClient();
+		}
 
 		return proxy.createToken(ubuntuTokenName, ubuntuUser, ubuntuPassword);
 

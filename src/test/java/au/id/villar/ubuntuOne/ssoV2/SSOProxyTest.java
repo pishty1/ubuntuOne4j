@@ -1,5 +1,6 @@
 package au.id.villar.ubuntuOne.ssoV2;
 
+import au.id.villar.ubuntuOne.ProxyData;
 import au.id.villar.ubuntuOne.TestUtils;
 
 import java.util.Properties;
@@ -23,8 +24,14 @@ public class SSOProxyTest {
 		String ubuntuUser = props.getProperty(TestUtils.TOKEN_USER_PROP);
 		String ubuntuPassword = props.getProperty(TestUtils.TOKEN_PASS_PROP);
 
+		SSOAPIClient proxy;
+		if(proxyHost != null) {
+			ProxyData proxyData = new ProxyData(proxyHost, proxyPort, proxyUser, proxyPassword);
+			proxy = new SSOAPIClient(proxyData);
+		} else {
+			proxy = new SSOAPIClient();
+		}
 
-		SSOAPIClient proxy = new SSOAPIClient(proxyHost, proxyPort, proxyUser, proxyPassword);
 		OauthToken token = (OauthToken)proxy.createToken(ubuntuTokenName, ubuntuUser, ubuntuPassword);
 		System.out.println(token);
 
