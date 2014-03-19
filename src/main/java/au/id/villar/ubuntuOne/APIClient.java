@@ -23,28 +23,27 @@ public class APIClient {
 	protected static final int STATUS_UNAUTHORIZED = 401;
 
 
-	private String proxyName;
-	private int proxyPort;
-	private String proxyUsername;
-	private String proxyPassword;
+	private ProxyData proxyData;
 
-	protected APIClient(String proxyName, int proxyPort, String proxyUsername, String proxyPassword) {
-		this.proxyName = proxyName;
-		this.proxyPort = proxyPort;
-		this.proxyUsername = proxyUsername;
-		this.proxyPassword = proxyPassword;
+
+	protected APIClient() {
+		this(null);
+	}
+
+	protected APIClient(ProxyData proxyData) {
+		this.proxyData = proxyData;
 	}
 
 	protected CloseableHttpClient buildHttpClient() {
 		HttpClientBuilder clientBuilder = HttpClients.custom();
-		if(proxyName != null) {
-			HttpHost proxy = new HttpHost(proxyName, proxyPort);
+		if(proxyData != null) {
+			HttpHost proxy = new HttpHost(proxyData.getName(), proxyData.getPort());
 			clientBuilder = clientBuilder.setProxy(proxy);
-			if(proxyUsername != null) {
+			if(proxyData.getUsername() != null) {
 				CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
 				credentialsProvider.setCredentials(
 						new AuthScope(proxy),
-						new UsernamePasswordCredentials(proxyUsername, proxyPassword));
+						new UsernamePasswordCredentials(proxyData.getUsername(), proxyData.getPassword()));
 				clientBuilder = clientBuilder.setDefaultCredentialsProvider(credentialsProvider);
 			}
 		}

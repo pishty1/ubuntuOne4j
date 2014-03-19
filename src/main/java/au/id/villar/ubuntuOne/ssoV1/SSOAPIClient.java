@@ -25,12 +25,10 @@ public class SSOAPIClient extends APIClient {
 
 	private OauthToken credentials;
 
-	public SSOAPIClient() {
-		this(null, 0, null, null);
-	}
+	public SSOAPIClient() {}
 
-	public SSOAPIClient(String proxyName, int proxyPort, String proxyUsername, String proxyPassword) {
-		super(proxyName, proxyPort, proxyUsername, proxyPassword);
+	public SSOAPIClient(ProxyData proxyData) {
+		super(proxyData);
 	}
 
 	public void login(String username, String password, String server, String application)

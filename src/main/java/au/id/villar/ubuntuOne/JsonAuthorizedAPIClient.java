@@ -16,9 +16,12 @@ public class JsonAuthorizedAPIClient extends AuthorizedAPIClient {
 
 	private static final String CONTENT_LENGTH = "Content-Length";
 
-	protected JsonAuthorizedAPIClient(String proxyName, int proxyPort, String proxyUsername, String proxyPassword,
-								   SSOCredentials credentials) {
-		super(proxyName, proxyPort, proxyUsername, proxyPassword, credentials);
+	protected JsonAuthorizedAPIClient(SSOCredentials credentials) {
+		super(credentials);
+	}
+
+	protected JsonAuthorizedAPIClient(ProxyData proxyData, SSOCredentials credentials) {
+		super(proxyData, credentials);
 	}
 
 	protected <T> T getJsonObject(Class<T> clazz, String url) throws UbuntuException {

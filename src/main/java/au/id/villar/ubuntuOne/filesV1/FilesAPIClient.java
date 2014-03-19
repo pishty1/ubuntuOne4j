@@ -1,9 +1,6 @@
 package au.id.villar.ubuntuOne.filesV1;
 
-import au.id.villar.ubuntuOne.JsonAuthorizedAPIClient;
-import au.id.villar.ubuntuOne.SSOCredentials;
-import au.id.villar.ubuntuOne.Tools;
-import au.id.villar.ubuntuOne.UbuntuException;
+import au.id.villar.ubuntuOne.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.methods.HttpGet;
 import org.joda.time.DateTime;
@@ -26,12 +23,11 @@ public class FilesAPIClient extends JsonAuthorizedAPIClient {
 	private static final String FILES_BASE_URL = BASE_URL +  "/file_storage/v1";
 
 	public FilesAPIClient(SSOCredentials credentials) {
-		this(null, 0, null, null, credentials);
+		super(credentials);
 	}
 
-	public FilesAPIClient(String proxyName, int proxyPort, String proxyUsername, String proxyPassword,
-						  SSOCredentials credentials) {
-		super(proxyName, proxyPort, proxyUsername, proxyPassword, credentials);
+	public FilesAPIClient(ProxyData proxyData, SSOCredentials credentials) {
+		super(proxyData, credentials);
 	}
 
 	public FilesInfo getInfo() throws UbuntuException {

@@ -3,6 +3,9 @@ package au.id.villar.ubuntuOne.ssoV1;
 import au.id.villar.ubuntuOne.SSOCredentials;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Represents an OAuth token resource
+ */
 public class OauthToken extends SSOCredentials {
 
 	@Override

@@ -2,6 +2,7 @@ package au.id.villar.ubuntuOne.ssoV2;
 
 import au.id.villar.ubuntuOne.APIClient;
 
+import au.id.villar.ubuntuOne.ProxyData;
 import au.id.villar.ubuntuOne.SSOCredentials;
 import au.id.villar.ubuntuOne.UbuntuException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,19 +32,14 @@ public class SSOAPIClient extends APIClient {
 	/**
 	 *
 	 */
-	public SSOAPIClient() {
-		super(null, 0, null, null);
-	}
+	public SSOAPIClient() {}
 
 	/**
 	 *
-	 * @param proxyName
-	 * @param proxyPort
-	 * @param proxyUsername
-	 * @param proxyPassword
+	 * @param proxyData
 	 */
-	public SSOAPIClient(String proxyName, int proxyPort, String proxyUsername, String proxyPassword) {
-		super(proxyName, proxyPort, proxyUsername, proxyPassword);
+	public SSOAPIClient(ProxyData proxyData) {
+		super(proxyData);
 	}
 
 	/**

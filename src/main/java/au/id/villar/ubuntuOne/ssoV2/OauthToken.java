@@ -4,8 +4,8 @@ import au.id.villar.ubuntuOne.SSOCredentials;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-* Represents an OAuth token resource
-*/
+ * Represents an OAuth token resource
+ */
 public class OauthToken extends SSOCredentials {
 
 	private String openId;

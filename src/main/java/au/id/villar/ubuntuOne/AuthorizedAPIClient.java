@@ -10,9 +10,13 @@ public class AuthorizedAPIClient extends APIClient {
 
 	private SSOCredentials credentials;
 
-	protected AuthorizedAPIClient(String proxyName, int proxyPort, String proxyUsername, String proxyPassword,
-								  SSOCredentials credentials) {
-		super(proxyName, proxyPort, proxyUsername, proxyPassword);
+	protected AuthorizedAPIClient(SSOCredentials credentials) {
+		super();
+		this.credentials = credentials;
+	}
+
+	protected AuthorizedAPIClient(ProxyData proxyData, SSOCredentials credentials) {
+		super(proxyData);
 		this.credentials = credentials;
 	}
 
