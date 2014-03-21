@@ -30,13 +30,13 @@ public class SSOAPIClient extends APIClient {
 	private static final Header JSON_CONTENT = new BasicHeader(CONTENT_TYPE_NAME, CONTENT_TYPE_JSON);
 
 	/**
-	 *
+	 * Constructs a default SSOAPIClient.
 	 */
 	public SSOAPIClient() {}
 
 	/**
-	 *
-	 * @param proxyData
+	 * Constructs a SSOAPIClient specifying a http proxy.
+	 * @param proxyData object containing information abot the proxy.
 	 */
 	public SSOAPIClient(ProxyData proxyData) {
 		super(proxyData);
