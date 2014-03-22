@@ -17,7 +17,10 @@ import java.util.Map;
 
 // http://canonical-identity-provider.readthedocs.org/en/latest/index.html
 /**
- * Provides a way to use Ubuntu SSO service. (see https://one.ubuntu.com/developer/account_admin/auth/otherplatforms)
+ * Provides a way to use Ubuntu SSO service to create tokens.
+ * (See <a href="https://one.ubuntu.com/developer/account_admin/auth/otherplatforms">Ubuntu One's cloud API</a> and
+ * <a href="https://canonical-identity-provider.readthedocs.org/en/latest/index.html">Canonical Identity Provider’s
+ * documentation</a>)
  */
 public class SSOAPIClient extends APIClient {
 
@@ -36,32 +39,40 @@ public class SSOAPIClient extends APIClient {
 
 	/**
 	 * Constructs a SSOAPIClient specifying a http proxy.
-	 * @param proxyData object containing information abot the proxy.
+	 * @param proxyData object containing information about the proxy.
+	 * @See ProxyData
 	 */
 	public SSOAPIClient(ProxyData proxyData) {
 		super(proxyData);
 	}
 
 	/**
-	 *
-	 * @param tokenName
-	 * @param email
-	 * @param password
-	 * @return
-	 * @throws SSOException
+	 * Creates or returns an already existent Oauth token. This is a convenient method equivalent to
+	 * {@code createToken(tokenName, email, password, null);}
+	 * @param tokenName  a name for the token.
+	 * @param email user’s email address.
+	 * @param password user’s password.
+	 * @return A token to be used in other {@link APIClient} objects for authentication purposes.
+	 * @throws SSOException If the token retrieveal was not successful.
+	 * @see  SSOAPIClient#createToken(String, String, String, String)
 	 */
 	public SSOCredentials createToken(String tokenName, String email, String password) throws SSOException {
 		return createToken(tokenName, email, password, null);
 	}
 
 	/**
+	 * <p>Creates or returns an already existent oauth token.</p>
+	 * <p>{@code tokenName} is used as human-readable identifier so the
+	 * user can easily identify which tokens belong to which application or device and revoke the ones they don't need
+	 * any more; it is recommended to use the format “application_name-device_name” or "Ubuntu One @ $hostname
+	 * [$application]" (see Ubuntu One's docs).</p>
 	 *
-	 * @param tokenName
-	 * @param email
-	 * @param password
-	 * @param otp
-	 * @return
-	 * @throws SSOException
+	 * @param tokenName  a name for the token.
+	 * @param email user’s email address.
+	 * @param password user’s password.
+	 * @param otp one time password (just if required, it can be null)
+	 * @return A token to be used in other {@link APIClient} objects for authentication purposes.
+	 * @throws SSOException If the token retrieveal was not successful.
 	 */
 	public SSOCredentials createToken(String tokenName, String email, String password, String otp) throws SSOException {
 
