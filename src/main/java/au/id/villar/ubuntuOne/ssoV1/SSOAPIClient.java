@@ -15,8 +15,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 /**
- *  Provides a way to use Ubuntu SSO service. (see https://one.ubuntu.com/developer/account_admin/auth/otherplatforms)
+ * Provides a way to use Ubuntu SSO service.
+ * @deprecated use {@link au.id.villar.ubuntuOne.ssoV2.SSOAPIClient} instead, which uses Ubuntu One's V2 API
  */
+@Deprecated
 public class SSOAPIClient extends APIClient {
 
 	public static final String LOGIN_URL = "https://login.ubuntu.com/api/1.0/authentications";
@@ -31,6 +33,11 @@ public class SSOAPIClient extends APIClient {
 		super(proxyData);
 	}
 
+	/**
+	 * @deprecated use methods from {@link au.id.villar.ubuntuOne.ssoV2.SSOAPIClient} instead, which uses
+	 * Ubuntu One's V2 API
+	 */
+	@Deprecated
 	public void login(String username, String password, String server, String application)
 			throws UbuntuException {
 
@@ -73,10 +80,20 @@ public class SSOAPIClient extends APIClient {
 
 	}
 
+	/**
+	 * @deprecated use methods from {@link au.id.villar.ubuntuOne.ssoV2.SSOAPIClient} instead, which uses
+	 * Ubuntu One's V2 API
+	 */
+	@Deprecated
 	public SSOCredentials getCredentials() {
 		return credentials;
 	}
 
+	/**
+	 * @deprecated use methods from {@link au.id.villar.ubuntuOne.ssoV2.SSOAPIClient} instead, which uses
+	 * Ubuntu One's V2 API
+	 */
+	@Deprecated
 	public void authorizeToken() throws UbuntuException {
 
 		String authorization = Tools.generateAuthorizationHeader(getCredentials(), "GET", GET_TOKEN_URL);

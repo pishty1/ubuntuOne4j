@@ -134,7 +134,7 @@ public class SSOAPIClient extends APIClient {
 		}
 	}
 
-	protected HttpPost createPost(String url, Map<String, String> content) throws IOException {
+	private HttpPost createPost(String url, Map<String, String> content) throws IOException {
 		HttpPost post = new HttpPost(url);
 		post.setHeader(JSON_CONTENT);
 		String jsonContent = new ObjectMapper().writeValueAsString(content);
